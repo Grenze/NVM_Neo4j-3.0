@@ -328,7 +328,7 @@
       <artifactId>pcj</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>/home/lingo/Desktop/neo4j_project/neo4j-3.0/libs/pcj.jar</systemPath>
+      <systemPath>${project.basedir}/../../libs/pcj.jar</systemPath>
     </dependency>
   </dependencies>
 
