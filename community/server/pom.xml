@@ -412,7 +412,7 @@
      <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-surefire-plugin</artifactId>
      <configuration>
-            <argLine>-Djava.library.path=/home/lingo/Desktop/pcj/pcj/target/cppbuild/</argLine>
+            <argLine>-Djava.library.path=./libs/cppbuild/</argLine>
      </configuration>
 </plugin>
       <plugin>
