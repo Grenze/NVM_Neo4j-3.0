@@ -1,7 +1,7 @@
 
 Neo4j-3.0 based on NVM
 
-In Intellij idea to run CommunityEntryPoint
+Use Intellij idea to run CommunityEntryPoint in package org.neo4j.server
 
 1.Edit its Configuration:
 VM options:-Djava.library.path=./libs/cppbuild
