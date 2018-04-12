@@ -1,1 +1,12 @@
+
 Neo4j-3.0 based on NVM
+
+In Intellij idea to run CommunityEntryPoint
+
+1.Edit its Configuration:
+VM options:-Djava.library.path=./libs/cppbuild
+Program arguments:--home-dir=./Zneo4j_dev --config-dir=./Zneo4j_dev/conf
+
+2.make sure you have PMDK environment and can build PCJ
+https://github.com/pmem/pmdk
+https://github.com/pmem/pcj
