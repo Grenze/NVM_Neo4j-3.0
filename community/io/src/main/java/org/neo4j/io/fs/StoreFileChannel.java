@@ -36,7 +36,7 @@ public class StoreFileChannel implements StoreChannel
     //convert ByteBuffer to String
     private String byteBufferToString( ByteBuffer buf ){
         byte[] bytes = new byte[buf.remaining()];
-        buf.get(bytes, buf.position(), buf.remaining());
+        buf.get(bytes, 0, bytes.length);
         return DatatypeConverter.printHexBinary(bytes);
         //return new String(bytes);
     }
