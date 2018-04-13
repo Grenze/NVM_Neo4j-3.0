@@ -384,7 +384,7 @@ public class SingleFilePageSwapper implements PageSwapper
         {
             long toRead = filePageSize * (long) srcs.length;
             long read, readTotal = 0;
-            synchronized ( positionLock( channel ) )
+            //synchronized ( positionLock( channel ) )
             {
                 channel.position( fileOffset );
                 do
@@ -507,7 +507,7 @@ public class SingleFilePageSwapper implements PageSwapper
         {
             long toWrite = filePageSize * (long) srcs.length;
             long bytesWritten = 0;
-            synchronized ( positionLock( channel ) )
+            //synchronized ( positionLock( channel ) )
             {
                 channel.position( fileOffset );
                 do

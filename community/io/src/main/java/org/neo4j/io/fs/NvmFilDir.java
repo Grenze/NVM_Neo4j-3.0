@@ -34,6 +34,7 @@ public class NvmFilDir  extends PersistentObject{
         setFileContent("");
         setIsFile(isFile);
         setIsDirectory(isDirectory);
+        ObjectDirectory.put(getGlobalId(), this);
     }
 
     private NvmFilDir(ObjectPointer<NvmFilDir> p){
@@ -59,34 +60,34 @@ public class NvmFilDir  extends PersistentObject{
 
 
     private void setLocalIndex(String localIndex){
-        synchronized(LOCALINDEX) {
+        //synchronized(LOCALINDEX) {
 
             setObjectField(LOCALINDEX, persistent(localIndex));
-        }
+        //}
     }
 
     private String getLocalIndex(){
-        synchronized(LOCALINDEX) {
+        //synchronized(LOCALINDEX) {
 
             return getObjectField(LOCALINDEX).toString();
-        }
+        //}
     }
 
 
     private void setFileContent(String fileContent){
-        synchronized (FILECONTENT) {
+        //synchronized (FILECONTENT) {
             System.out.println("Write " + getGlobalId() + " From DRAM To NVM");
             System.out.println(fileContent);
             setObjectField(FILECONTENT, persistent(fileContent));
-        }
+        //}
     }
 
     private String getFileContent(){
-        synchronized (FILECONTENT) {
+        //synchronized (FILECONTENT) {
             System.out.println("Read " + getGlobalId() + " From NVM To DRAM");
             System.out.println(getObjectField(FILECONTENT).toString());
             return getObjectField(FILECONTENT).toString();
-        }
+        //}
     }
 
 
@@ -170,11 +171,11 @@ public class NvmFilDir  extends PersistentObject{
     }
     //remained to complete
     public void force(boolean metadata){
-            if (ObjectDirectory.get(getGlobalId(), NvmFilDir.class) == null) {
-                ObjectDirectory.put(getGlobalId(), this);
-            }
+            //if (ObjectDirectory.get(getGlobalId(), NvmFilDir.class) == null) {
+                //ObjectDirectory.put(getGlobalId(), this);
+            //}
 
-            FileUtils.printDirectory();
+            //PrintDirectory(NvmFilDir.class);
     }
 
 

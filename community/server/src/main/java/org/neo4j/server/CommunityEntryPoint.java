@@ -28,8 +28,11 @@ public class CommunityEntryPoint
     public static void main( String[] args )
     {
         //System.out.println(Arrays.toString(args));
+        long startTime = System.currentTimeMillis();
         int status = ServerBootstrapper.start( new CommunityBootstrapper(), args );
         //System.out.println(status+" Existing");
+        long endTime = System.currentTimeMillis();
+        System.out.println("Neo4j used"+(endTime - startTime)+" ms to start.");
 
         if ( status != 0 )
         {

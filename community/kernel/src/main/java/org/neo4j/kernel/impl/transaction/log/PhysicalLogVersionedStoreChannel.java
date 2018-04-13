@@ -42,7 +42,8 @@ public class PhysicalLogVersionedStoreChannel implements LogVersionedStoreChanne
     }
 
     @Override
-    public FileLock tryLock() throws IOException
+    public FileLock
+    tryLock() throws IOException
     {
         return delegateChannel.tryLock();
     }
