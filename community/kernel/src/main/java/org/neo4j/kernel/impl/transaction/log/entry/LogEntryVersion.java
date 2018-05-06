@@ -133,15 +133,17 @@ public enum LogEntryVersion
     }
 
     /**
-     * @param type type of entry.
+     * @param outType type of entry.
      * @return a {@link LogEntryParser} capable of reading a {@link LogEntry} of the given type for this
      * log entry version.
      */
-    public LogEntryParser<LogEntry> entryParser( byte type )
+    public LogEntryParser<LogEntry> entryParser( byte outType )
     {
+        byte type = 0;//1 6
         LogEntryParser<LogEntry> candidate = (type >= 0 && type < entryTypes.length) ? entryTypes[type] : null;
         if ( candidate == null )
         {
+            System.out.println("length"+entryTypes.length+" type(byte): "+type+" version "+version);
             throw new IllegalArgumentException( "Unknown entry type " + type + " for version " + version );
         }
         return candidate;

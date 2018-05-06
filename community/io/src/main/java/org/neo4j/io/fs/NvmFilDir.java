@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static lib.util.persistent.Util.persistent;
 
@@ -24,6 +25,7 @@ public class NvmFilDir  extends PersistentObject{
     private static final StringField FILECONTENT = new StringField();
     private static final BooleanField ISFILE = new BooleanField();
     private static final BooleanField ISDIRECTORY = new BooleanField();
+    //private static ReentrantLock Lock = new ReentrantLock();
 
     private static final ObjectType<NvmFilDir> TYPE = ObjectType.withFields(NvmFilDir.class, GLOBALID, LOCALINDEX, FILECONTENT, ISFILE, ISDIRECTORY);
     //only this param about File is String, convert to canonicalPath before pass in
@@ -201,8 +203,19 @@ public class NvmFilDir  extends PersistentObject{
             NvmFilDir.putNvmFilDir(dst, NvmFilDir.removeNvmFilDir(src));
     }
 
+    public boolean tryLock(){
+        //return Lock.tryLock();
+        return true;
+    }
+
+    public void unlock(){
+        //Lock.unlock();
+    }
+
+
 
     /*below are static methods*/
+
 
 
 
