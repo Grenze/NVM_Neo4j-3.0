@@ -42,7 +42,7 @@ public class PhysicalLogVersionedStoreChannel implements LogVersionedStoreChanne
     }
 
     @Override
-    public FileLock
+    public boolean
     tryLock() throws IOException
     {
         return delegateChannel.tryLock();
@@ -211,5 +211,11 @@ public class PhysicalLogVersionedStoreChannel implements LogVersionedStoreChanne
     public void flush() throws IOException
     {
         force( false );
+    }
+
+    @Override
+    public void release()
+    {
+
     }
 }

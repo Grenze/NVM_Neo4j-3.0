@@ -13,7 +13,7 @@ public interface StoreChannel
      * @throws IOException If an I/O error occurs.
      * @throws java.nio.channels.ClosedChannelException if the channel is closed.
      */
-    FileLock tryLock() throws IOException;
+    boolean tryLock() throws IOException;
 
     /**
      * NOTE: If you want to write bytes to disk, use #writeAll(), this does not guarantee all bytes will be written,
@@ -43,4 +43,6 @@ public interface StoreChannel
     StoreChannel position( long newPosition ) throws IOException;
 
     StoreChannel truncate( long size ) throws IOException;
+
+    void release();
 }

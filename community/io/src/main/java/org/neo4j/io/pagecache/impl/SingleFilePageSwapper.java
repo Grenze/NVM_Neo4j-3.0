@@ -129,7 +129,7 @@ public class SingleFilePageSwapper implements PageSwapper
     private final int filePageSize;
     private volatile PageEvictionCallback onEviction;
     private final StoreChannel[] channels;
-    private FileLock fileLock;
+    private boolean fileLock;
     private final boolean hasPositionLock;
 
     // Guarded by synchronized(this). See tryReopen() and close().
@@ -204,7 +204,7 @@ public class SingleFilePageSwapper implements PageSwapper
         {
             fileLock = channels[tokenChannelStripe].tryLock();
             //if ( fileLock == null )
-            if ( fileLock != null )
+            if ( !fileLock )
             {
                 throw new FileLockException( file );
             }

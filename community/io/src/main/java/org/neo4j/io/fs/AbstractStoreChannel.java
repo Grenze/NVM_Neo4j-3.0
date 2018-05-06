@@ -6,7 +6,7 @@ import java.nio.channels.FileLock;
 
 public class AbstractStoreChannel implements StoreChannel{
     @Override
-    public FileLock tryLock() throws IOException
+    public boolean tryLock() throws IOException
     {
         throw new UnsupportedOperationException();
     }
@@ -117,5 +117,11 @@ public class AbstractStoreChannel implements StoreChannel{
     public void flush() throws IOException
     {
         force( false );
+    }
+
+    @Override
+    public void release()
+    {
+
     }
 }

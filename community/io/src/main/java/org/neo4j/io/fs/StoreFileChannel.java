@@ -208,9 +208,8 @@ public class StoreFileChannel implements StoreChannel
     *
     * */
     @Override
-    public FileLock tryLock() throws IOException{
-
-        return null;
+    public boolean tryLock() throws IOException{
+        return nvmFile.tryLock();
     }
 
     @Override
@@ -221,11 +220,14 @@ public class StoreFileChannel implements StoreChannel
 
     @Override
     public void close()throws IOException {
-        if(this.nvmFile == null){return;}
+        if(nvmFile == null){return;}
         nvmFile.force(true);
-        this.nvmFile = null;
-        this.locate = null;
-        return;
+        nvmFile = null;
+        locate = null;
+    }
+
+    public void release(){
+        nvmFile.unlock();
     }
 
     /*size of file*/

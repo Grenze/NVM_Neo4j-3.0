@@ -34,7 +34,7 @@ public class StoreLocker
 
     private final FileSystemAbstraction fileSystemAbstraction;
 
-    private FileLock storeLockFileLock;
+    private boolean storeLockFileLock;
     private StoreChannel storeLockFileChannel;
 
     public StoreLocker( FileSystemAbstraction fileSystemAbstraction )
@@ -71,7 +71,7 @@ public class StoreLocker
             storeLockFileChannel = fileSystemAbstraction.open( storeLockFile, "rw" );
             storeLockFileLock = storeLockFileChannel.tryLock();
             //if ( storeLockFileLock == null )
-            if ( storeLockFileLock != null )
+            if ( !storeLockFileLock )
             {
                 String message = "Store and its lock file has been locked by another process: " + storeLockFile;
                 throw storeLockException( message, null );
@@ -93,11 +93,17 @@ public class StoreLocker
 
     public void release() throws IOException
     {
-        if ( storeLockFileLock != null )
+        /*if ( storeLockFileLock != null )
         {
             storeLockFileLock.release();
             storeLockFileLock = null;
+        }*/
+        if(!storeLockFileLock)
+        {
+            storeLockFileChannel.release();
+            //no null
         }
+
         if ( storeLockFileChannel != null )
         {
             storeLockFileChannel.close();
